@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navbar</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+      body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between; /* Adjusted justify-content */
+    }
+
+    .card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      overflow: hidden;
+      width: calc(33.33% - 20px); /* Adjusted width for 3 cards per row */
+      /* margin-right: 20px; */ /* Optionally add margin between cards */
+    }
+
+    .card-img-top {
+      border-radius: 10px 10px 0 0;
+      width: 100%;
+      height: auto;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-title {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .card-text {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #007bff;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<div th:insert="~{user/userheader}"></div>
+
+<div class="container" >
+  <div class="card" th:each="c : ${productList}">
+    <img src="/image/1.jpg" class="card-img-top" alt="Product Image">
+    <div class="card-body">
+      <h5 class="card-title" th:text="${c.pname}">Product Name</h5>
+      <p class="card-text" th:text="'HP'+${c.pid}">Product ID: 12345</p>
+      <p class="card-text" th:text="${c.category}">Category: Electronics</p>
+      <p class="card-text" th:text="${c.description}">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p class="price" th:text="${c.price}">$99.99</p>
+<!--       <p class="card-text" th:text="${c.id}">User ID: 56789</p> -->
+    </div>
+  </div>
+</div>
+
+
+<div th:replace="~{user/_ufragments::footer}"></div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style th:include="~{admin/_afragments::style}">
+        
+    </style>
+</head>
+
+<body>
+
+    <div th:replace="~{admin/_afragments::header}"></div>
+	
+	<div class="card mr-5 ml-5 mt-5">
+		<div class="card-body">
+			<h1 class="text-center">All Admin List</h1>
+			<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="c : ${userList}">
+      <th scope="row" th:text="'HERBAL'+${c.id}">1</th>
+      <td th:text="${c.name}">Mark</td>
+      <td th:text="${c.email}">Otto</td>
+      <td th:text="${c.role}">@mdo</td>
+      <td>
+      		<button class="btn btn-danger btm-sm">Delete</button>
+      		<button class="btn btn-primary btm-sm">Update</button>
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+		</div>
+	
+	</div>
+	<div th:replace="~{user/_ufragments::footer}"></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+	
+</html>

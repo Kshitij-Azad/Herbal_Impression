@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Document</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+   
+        
+     </style>
+</head>
+
+<body >
+<div th:insert="~{admin/adminheader}"></div>
+
+
+    <section class="vh-100 bg-image"
+        style="margin-bottom: 5%;">
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3" >
+            <div class="container h-100" style="margin-top: 2%">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card" style="border-radius: 10%;">
+                            <div class="card-body p-5">
+
+                               
+
+                                <h2 class="text-uppercase text-center mb-3" style="color:#9A616D; "><b>Add Admin Account</b></h2>
+
+
+								<div th:if="${session.message}" class="container">
+                            		<div th:classappend="${'alert-'+session.message.type}" class="alert" role="alert">
+  									<span th:text="${session.message.content}"></span>
+									</div>
+									<!-- <th:block th:text="${#session.removeAttribute('message')}"></th:block> -->
+                            
+                           		</div>
+								
+	
+	
+	
+                                <form action="#" th:action="@{process-admin}" method="post" th:object="${user}">
+
+                                    <div class="form-outline mb-2">
+                                        <label class="form-label" for="form3Example1cg" ><b>Name</b></label>
+                                        <input type="text" id="form3Example1cg" class="form-control form-control-lg"
+                                            name="name" placeholder="" required/>
+                                        <div class="invalid-feedback" ></div>
+                                    </div>
+
+
+                                    <div class="form-outline mb-2">
+                                        <label class="form-label" for="form3Example3cg"><b>Email</b></label>
+                                        <input type="email" id="form3Example3cg" class="form-control form-control-lg"
+                                            
+                                            name="email" required/>
+                                        <div class="invalid-feedback" >
+                                        </div>
+                                    </div>
+
+                                    <div class="form-outline mb-2">
+                                        <label class="form-label" for="form3Example4cg"><b>Password</b></label>
+                                        <input type="password" id="form3Example4cg" required
+                                            class="form-control form-control-lg" name="password" />
+
+                                    </div>
+
+                                    <div class="form-outline mb-2">
+                                        <label for="role"><b>Role:</b></label>
+                                        <select id="role" name="role" class="form-control">
+<!--                                             <option value="ROLE_USER"><b>User</b></option> -->
+                                            <option value="ROLE_ADMIN"><b>Admin</b></option>
+                                        </select>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit"
+                                            class="btn btn-secondary  btn-block btn-lg gradient-custom-4 text-body" style="color: white;"><b>Add Admin</b></button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<div th:replace="~{user/_ufragments::footer}"></div>
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
