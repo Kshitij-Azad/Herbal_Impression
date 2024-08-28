@@ -1,7 +1,13 @@
-
+# Build stage
 FROM maven:3.8.3-openjdk-17 AS build
-COPY src /home/app/src
-COPY pom.xml /home/app
-RUN mvn -f /home/app/pom.xml clean package
+WORKDIR /home/app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# Run stage
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /home/app/target/Herbal_Impression-0.0.1-SNAPSHOT.jar /app/Herbal_Impression.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/home/app/target/Herbal_Impression-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app/Herbal_Impression.jar"]
