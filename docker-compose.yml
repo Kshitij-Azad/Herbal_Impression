@@ -23,9 +23,10 @@ services:
     networks:
       - springapimysql-net  
     environment:
-      MYSQL_DATABASE: herbal 
-      MYSQL_PASSWORD: 
-      MYSQL_ROOT_PASSWORD: 
+		MYSQL_DATABASE: herbal 
+		MYSQL_USER: myuser
+		MYSQL_PASSWORD: mypassword
+		MYSQL_ROOT_PASSWORD: rootpassword
       
   react-app:
     build:
