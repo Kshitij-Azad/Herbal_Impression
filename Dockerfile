@@ -1,7 +1,6 @@
-
-FROM maven:3.8.3-openjdk-17 AS build
-COPY src /home/app/src
-COPY pom.xml /home/app
-#RUN mvn -f /home/app/pom.xml clean package
+FROM openjdk:17-alpine
+WORKDIR /opt
+ENV PORT 8080
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/home/app/target/Herbal_Impression-0.0.1-SNAPSHOT.jar"]
+COPY target/*.jar /opt/app.jar
+ENTRYPOINT exec java $JAVA_OPTS -jar app.jar
