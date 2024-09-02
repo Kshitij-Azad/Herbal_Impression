@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+		
+    </style>
+</head>
+
+<body >
+
+<div th:insert="~{admin/adminheader}"></div>
+
+    <!-- Form Section -->
+    <section style="margin-bottom: 5%;">
+        <div class="container">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-8">
+                    <div class="card" style="padding: 5%; border-radius: 5%;">
+                        <div class="card-body">
+                            <h2 class="card-title text-center" style="color: #9A616D;"><b>Add Product</b></h2>
+                            
+                            <div th:if="${session.message}" class="container">
+                            	<div th:classappend="${'alert-'+session.message.type}" class="alert" role="alert">
+  								<span th:text="${session.message.content}"></span>
+								</div>
+								<!-- <th:block th:text="${#session.removeAttribute('message')}"></th:block> -->
+                            
+                            </div>
+                            
+                            
+                            <form action="#" th:action="@{/admin/process-product}" method="post" th:object="${product}"
+                                enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <h5><label for="pname"><b>Product Name</b></label></h5>
+                                    <input type="text" class="form-control" id="pname" name="pname" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description"><b>Description</b></label>
+                                    <textarea class="form-control" id="description" name="description"
+                                        required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <h5><label for="price"><b>Price</b></label></h5>
+                                    <input type="text" class="form-control" id="price" name="price" required>
+                                </div>
+                                <div class="form-group">
+    								<h5><label for="category"><b>Category</b></label></h5>
+    								<select class="form-control" id="category" name="category" required>
+        							<option value="hair">Hair</option>
+       							 	<option value="body">Body</option>
+        							<option value="face">Face</option>
+        							<option value="lips">Lips</option>
+        							<option value="other">Other</option>
+        							<!-- Add more options as needed -->
+    								</select>
+								</div>
+                                <div class="form-group">
+                                    <h5><label for="image"><b>Image</b></label></h5>
+                                    <input type="file" class="form-control-file" id="image" name="img" required>
+                                </div>
+                                <button type="submit" class="btn btn-info btn-block btn-lg gradient-custom-4 text-body" style=""><b>Add Product</b></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<div th:replace="~{user/_ufragments::footer}"></div>
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</html>

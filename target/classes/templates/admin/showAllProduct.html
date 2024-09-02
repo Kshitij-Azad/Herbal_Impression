@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Card</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            overflow: hidden;
+            width: calc(33.33% - 30px);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-img-top {
+            border-radius: 10px 10px 0 0;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #007bff;
+            margin-top: 10px;
+        }
+
+        .add-to-cart-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .card {
+                width: calc(50% - 30px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div th:insert="~{admin/adminheader}"></div>
+
+<div class="container">
+    <div class="card" th:each="c : ${productList}">
+        <img src="/image/1.jpg" class="card-img-top" alt="Product Image">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${c.pname}">Product Name</h5>
+            <p class="card-text" th:text="'HP'+${c.pid}">Product ID: 12345</p>
+            <p class="card-text" th:text="${c.category}">Category: Electronics</p>
+            <p class="card-text" th:text="${c.description}">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p class="price" th:text="${c.price}">$99.99</p>
+            <button class="add-to-cart-btn">Add to Cart <i class="fas fa-cart-plus"></i></button>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{user/_ufragments::footer}"></div>
+</body>
+</html>
